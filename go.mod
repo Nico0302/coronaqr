@@ -1,4 +1,4 @@
-module github.com/stapelberg/coronaqr
+module github.com/nico0302/coronaqr
 
 go 1.16
 
