@@ -68,27 +68,17 @@ type VaccineRecord struct {
 }
 
 type TestRecord struct {
-	Target string `cbor:"tg" json:"tg"`
-	// "tt": {
-	//   "description": "Type of Test",
-	//   "$ref": "https://id.uvci.eu/DCC.ValueSets.schema.json#/$defs/test-type"
-	// },
+	Target   string `cbor:"tg" json:"tg"`
+	TestType string `cbor:"tt" json:"tt"`
 
 	// Name is the NAA Test Name
 	Name string `cbor:"nm" json:"nm"`
 
 	// Manufacturer is the RAT Test name and manufacturer.
-	Manufacturer string `cbor:"ma" json:"ma"`
-	// "sc": {
-	//   "description": "Date/Time of Sample Collection",
-	//   "type": "string",
-	//   "format": "date-time"
-	// },
-	// "tr": {
-	//   "description": "Test Result",
-	//   "$ref": "https://id.uvci.eu/DCC.ValueSets.schema.json#/$defs/test-result"
-	// },
-	TestingCentre string `cbor:"tc" json:"tc"`
+	Manufacturer   string `cbor:"ma" json:"ma"`
+	SampleDatetime string `cbor:"sc" json:"sc"`
+	TestResult     string `cbor:"tr" json:"tr"`
+	TestingCentre  string `cbor:"tc" json:"tc"`
 	// Country of Test
 	Country       string `cbor:"co" json:"co"`
 	Issuer        string `cbor:"is" json:"is"`
@@ -97,29 +87,15 @@ type TestRecord struct {
 
 type RecoveryRecord struct {
 	Target string `cbor:"tg" json:"tg"`
-
-	//     "fr": {
-	//       "description": "ISO 8601 complete date of first positive NAA test result",
-	//       "type": "string",
-	//       "format": "date"
-	//     },
-
+	
+	// ISO 8601 complete date of first positive NAA test result
+	FirstPositiveTestDate string `cbor:"fr" json:"fr"`
+	ValidFromDate         string `cbor:"df" json:"df"` // ISO 8601 complete date
+	ValidUntilDate        string `cbor:"du" json:"du"` // ISO 8601 complete date
+	
 	// Country of Test
-	Country string `cbor:"co" json:"co"`
-
-	Issuer string `cbor:"is" json:"is"`
-
-	//     "df": {
-	//       "description": "ISO 8601 complete date: Certificate Valid From",
-	//       "type": "string",
-	//       "format": "date"
-	//     },
-	//     "du": {
-	//       "description": "ISO 8601 complete date: Certificate Valid Until",
-	//       "type": "string",
-	//       "format": "date"
-	//     },
-
+	Country       string `cbor:"co" json:"co"`
+	Issuer        string `cbor:"is" json:"is"`
 	CertificateID string `cbor:"ci" json:"ci"`
 }
 
