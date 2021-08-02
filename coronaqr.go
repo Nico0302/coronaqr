@@ -38,65 +38,65 @@ type Decoded struct {
 // see https://github.com/ehn-dcc-development/ehn-dcc-schema
 
 type CovidCert struct {
-	Version         string           `cbor:"ver" json:"ver"`
-	PersonalName    Name             `cbor:"nam" json:"nam"`
-	DateOfBirth     string           `cbor:"dob" json:"dob"`
-	VaccineRecords  []VaccineRecord  `cbor:"v" json:"v"`
-	TestRecords     []TestRecord     `cbor:"t" json:"t"`
-	RecoveryRecords []RecoveryRecord `cbor:"r" json:"r"`
+	Version         string           `cbor:"ver" json:"version"`
+	PersonalName    Name             `cbor:"nam" json:"name"`
+	DateOfBirth     string           `cbor:"dob" json:"dateOfBirth"`
+	VaccineRecords  []VaccineRecord  `cbor:"v" json:"vaccineRecords"`
+	TestRecords     []TestRecord     `cbor:"t" json:"testRecords"`
+	RecoveryRecords []RecoveryRecord `cbor:"r" json:"recoveryRecords"`
 }
 
 type Name struct {
-	FamilyName    string `cbor:"fn" json:"fn"`
-	FamilyNameStd string `cbor:"fnt" json:"fnt"`
-	GivenName     string `cbor:"gn" json:"gn"`
-	GivenNameStd  string `cbor:"gnt" json:"gnt"`
+	FamilyName    string `cbor:"fn" json:"familyName"`
+	FamilyNameStd string `cbor:"fnt" json:"familyNameStd"`
+	GivenName     string `cbor:"gn" json:"givenName"`
+	GivenNameStd  string `cbor:"gnt" json:"givenNameStd"`
 }
 
 // see https://github.com/ehn-dcc-development/ehn-dcc-schema/blob/release/1.3.0/DCC.Types.schema.json
 type VaccineRecord struct {
-	Target        string  `cbor:"tg" json:"tg"`
-	Vaccine       string  `cbor:"vp" json:"vp"`
-	Product       string  `cbor:"mp" json:"mp"`
-	Manufacturer  string  `cbor:"ma" json:"ma"`
-	Doses         float64 `cbor:"dn" json:"dn"` // int per the spec, but float64 e.g. in IE
-	DoseSeries    float64 `cbor:"sd" json:"sd"` // int per the spec, but float64 e.g. in IE
-	Date          string  `cbor:"dt" json:"dt"`
-	Country       string  `cbor:"co" json:"co"`
-	Issuer        string  `cbor:"is" json:"is"`
-	CertificateID string  `cbor:"ci" json:"ci"`
+	Target        string  `cbor:"tg" json:"target"`
+	Vaccine       string  `cbor:"vp" json:"vaccine"`
+	Product       string  `cbor:"mp" json:"product"`
+	Manufacturer  string  `cbor:"ma" json:"manufacturer"`
+	Doses         float64 `cbor:"dn" json:"doses"` // int per the spec, but float64 e.g. in IE
+	DoseSeries    float64 `cbor:"sd" json:"doseSeries"` // int per the spec, but float64 e.g. in IE
+	Date          string  `cbor:"dt" json:"date"`
+	Country       string  `cbor:"co" json:"country"`
+	Issuer        string  `cbor:"is" json:"issuer"`
+	CertificateID string  `cbor:"ci" json:"certificateID"`
 }
 
 type TestRecord struct {
-	Target   string `cbor:"tg" json:"tg"`
-	TestType string `cbor:"tt" json:"tt"`
+	Target   string `cbor:"tg" json:"target"`
+	TestType string `cbor:"tt" json:"testType"`
 
 	// Name is the NAA Test Name
-	Name string `cbor:"nm" json:"nm"`
+	Name string `cbor:"nm" json:"name"`
 
 	// Manufacturer is the RAT Test name and manufacturer.
-	Manufacturer   string `cbor:"ma" json:"ma"`
-	SampleDatetime string `cbor:"sc" json:"sc"`
-	TestResult     string `cbor:"tr" json:"tr"`
-	TestingCentre  string `cbor:"tc" json:"tc"`
+	Manufacturer   string `cbor:"ma" json:"manufacturer"`
+	SampleDatetime string `cbor:"sc" json:"sampleDatetime"`
+	TestResult     string `cbor:"tr" json:"testResult"`
+	TestingCentre  string `cbor:"tc" json:"testingCentre"`
 	// Country of Test
-	Country       string `cbor:"co" json:"co"`
-	Issuer        string `cbor:"is" json:"is"`
-	CertificateID string `cbor:"ci" json:"ci"`
+	Country       string `cbor:"co" json:"country"`
+	Issuer        string `cbor:"is" json:"issuer"`
+	CertificateID string `cbor:"ci" json:"certificateID"`
 }
 
 type RecoveryRecord struct {
-	Target string `cbor:"tg" json:"tg"`
+	Target string `cbor:"tg" json:"target"`
 	
 	// ISO 8601 complete date of first positive NAA test result
-	FirstPositiveTestDate string `cbor:"fr" json:"fr"`
-	ValidFromDate         string `cbor:"df" json:"df"` // ISO 8601 complete date
-	ValidUntilDate        string `cbor:"du" json:"du"` // ISO 8601 complete date
+	FirstPositiveTestDate string `cbor:"fr" json:"firstPositiveTestDate"`
+	ValidFromDate         string `cbor:"df" json:"validFromDate"` // ISO 8601 complete date
+	ValidUntilDate        string `cbor:"du" json:"validUntilDate"` // ISO 8601 complete date
 	
 	// Country of Test
-	Country       string `cbor:"co" json:"co"`
-	Issuer        string `cbor:"is" json:"is"`
-	CertificateID string `cbor:"ci" json:"ci"`
+	Country       string `cbor:"co" json:"country"`
+	Issuer        string `cbor:"is" json:"issuer"`
+	CertificateID string `cbor:"ci" json:"certificateID"`
 }
 
 func calculateKid(encodedCert []byte) []byte {
